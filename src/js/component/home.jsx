@@ -1,26 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+// Código
+const Counter = (props) => {
+    const [count, setCount] = useState(0);
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCount((prevCount) => prevCount + 1);
+        }, 1000);
+
+        // Limpieza del intervalo
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div
+            className="Counter"
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                fontSize: "3rem",
+                fontWeight: "bold",
+                color: "#fff",
+                backgroundColor: "#007bff",
+                padding: "20px 40px",
+                borderRadius: "10px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                width: "200px",
+                height: "80px",
+                textAlign: "center",
+            }}
+        >
+            {count}
+        </div>
+    );
 };
 
-export default Home;
+// Export
+export default Counter;
