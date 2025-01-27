@@ -1,45 +1,39 @@
-import React, { useState, useEffect } from "react";
+// Import
+import React, { useState } from "react";
 
-// Código
-const Counter = (props) => {
-    const [count, setCount] = useState(0);
+// Codigo
+const [counter, setCounter] = useState(9876543210);
+const [start, setStart] = useState('Start');
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCount((prevCount) => prevCount + 1);
-        }, 1000);
+const handleStart = () => {
+    setStart('Pause')
+}
 
-        // Limpieza del intervalo
-        return () => clearInterval(interval);
-    }, []);
+const handleReset = () => {
+    setStart('Start');
+    setCounter(0);
+}
 
-    return (
-        <div
-            className="Counter"
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                fontSize: "3rem",
-                fontWeight: "bold",
-                color: "#fff",
-                backgroundColor: "#007bff",
-                padding: "20px 40px",
-                borderRadius: "10px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                width: "200px",
-                height: "80px",
-                textAlign: "center",
-            }}
-        >
-            {count}
+//Return
+return (
+    <div className="container" color="success">Simple Counter</div>
+    <h2 className="text-primary">{'Clock'}</h2>
+    <div className="big-counter">
+        <div><i className="fa fa-clock fa-lg"></i></div>
+        <div>{Math.floor(counter / 10000000 % 10)}</div>
+        <div>{Math.floor(counter / 1000000 % 10)}</div>
+        <div>{Math.floor(counter / 100000 % 10)}</div>
+        <div>{Math.floor(counter / 10000 % 10)}</div>
+        <div>{Math.floor(counter / 1000 % 10)}</div>
+        <div>{Math.floor(counter / 100 % 10)}</div>
+        <div>,</div>
+        <div>{Math.floor(counter / 10 % 10)}</div>
+        <div>{Math.floor(counter % 10)}</div>
+        <div>
+            <div className="btn-group-vertical" role="group" aria-label="Vertical button group">
+                <button type="button" className="btn btn-otuline-success">{start}</button>
+                <button type="button" className="btn btn-otuline-success">{'Reset'}</button>
+            </div>
         </div>
-    );
-};
-
-// Export
-export default Counter;
+    </div>
+)
